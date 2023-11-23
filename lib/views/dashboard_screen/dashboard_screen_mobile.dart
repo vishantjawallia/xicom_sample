@@ -11,13 +11,12 @@ class _DashboardScreenMobile extends StatefulWidget {
   State<_DashboardScreenMobile> createState() => _DashboardScreenMobileState();
 }
 
-class _DashboardScreenMobileState extends State<_DashboardScreenMobile> with TickerProviderStateMixin {
-  late TabController? tabController;
+class _DashboardScreenMobileState extends State<_DashboardScreenMobile> {
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: widget.viewModel.quotesList.length, vsync: this);
+    
   }
 
   @override
@@ -27,8 +26,7 @@ class _DashboardScreenMobileState extends State<_DashboardScreenMobile> with Tic
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
-          children: [
-          ],
+          children: [],
         ),
       ),
     );

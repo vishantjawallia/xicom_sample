@@ -2,7 +2,6 @@
 
 part of dashboard_screen_view;
 
-
 class _DashboardScreenDesktop extends StatelessWidget {
   final DashboardScreenViewModel viewModel;
 

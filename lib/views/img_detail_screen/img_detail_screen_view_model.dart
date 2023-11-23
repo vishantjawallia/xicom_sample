@@ -2,10 +2,10 @@ import 'package:stacked/stacked.dart';
 import 'package:xicom_sample/views/img_detail_screen/service/img_detail_service.dart';
 
 class ImgDetailScreenViewModel extends BaseViewModel with ImgDetailService {
-  ImgDetailScreenViewModel(){
+  ImgDetailScreenViewModel() {
     loadItems();
   }
-  
+
   // Add ViewModel specific code here
   Future<void> loadItems() async {
     setBusy(true);
@@ -15,5 +15,4 @@ class ImgDetailScreenViewModel extends BaseViewModel with ImgDetailService {
     setBusy(false);
     notifyListeners();
   }
-
 }

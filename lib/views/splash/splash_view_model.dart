@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
 
@@ -17,7 +16,7 @@ class SplashViewModel extends BaseViewModel {
     //Let other views to render again
     setBusy(false);
     notifyListeners();
-    await Future.delayed(const Duration(seconds: 2  ));
+    await Future.delayed(const Duration(seconds: 2));
     Get.off(() => DashboardScreenView());
   }
 }

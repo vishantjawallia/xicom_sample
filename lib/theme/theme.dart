@@ -16,23 +16,36 @@ class CustomTheme {
           color: Palettes.grey,
         ),
     textTheme: TextTheme(
-      displayLarge: GoogleFonts.montserrat(fontSize: 32, color: Palettes.textColor),
-      displayMedium: GoogleFonts.montserrat(fontSize: 30, color: Palettes.textColor),
-      displaySmall: GoogleFonts.montserrat(fontSize: 28, color: Palettes.textColor),
+      displayLarge:
+          GoogleFonts.montserrat(fontSize: 32, color: Palettes.textColor),
+      displayMedium:
+          GoogleFonts.montserrat(fontSize: 30, color: Palettes.textColor),
+      displaySmall:
+          GoogleFonts.montserrat(fontSize: 28, color: Palettes.textColor),
       //
-      headlineLarge: GoogleFonts.montserrat(fontSize: 26, color: Palettes.textColor),
-      headlineMedium: GoogleFonts.montserrat(fontSize: 24, color: Palettes.textColor),
-      headlineSmall: GoogleFonts.montserrat(fontSize: 22, color: Palettes.textColor),
+      headlineLarge:
+          GoogleFonts.montserrat(fontSize: 26, color: Palettes.textColor),
+      headlineMedium:
+          GoogleFonts.montserrat(fontSize: 24, color: Palettes.textColor),
+      headlineSmall:
+          GoogleFonts.montserrat(fontSize: 22, color: Palettes.textColor),
       //
-      titleLarge: GoogleFonts.montserrat(fontSize: 20, color: Palettes.textColor),
-      titleMedium: GoogleFonts.montserrat(fontSize: 18, color: Palettes.textColor),
-      titleSmall: GoogleFonts.montserrat(fontSize: 16, color: Palettes.textColor),
+      titleLarge:
+          GoogleFonts.montserrat(fontSize: 20, color: Palettes.textColor),
+      titleMedium:
+          GoogleFonts.montserrat(fontSize: 18, color: Palettes.textColor),
+      titleSmall:
+          GoogleFonts.montserrat(fontSize: 16, color: Palettes.textColor),
       //
-      bodyLarge: GoogleFonts.montserrat(fontSize: 14, color: Palettes.textColor),
-      bodyMedium: GoogleFonts.montserrat(fontSize: 12, color: Palettes.textColor),
-      bodySmall: GoogleFonts.montserrat(fontSize: 10, color: Palettes.textColor),
+      bodyLarge:
+          GoogleFonts.montserrat(fontSize: 14, color: Palettes.textColor),
+      bodyMedium:
+          GoogleFonts.montserrat(fontSize: 12, color: Palettes.textColor),
+      bodySmall:
+          GoogleFonts.montserrat(fontSize: 10, color: Palettes.textColor),
     ),
-    colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.lightBlue).copyWith(secondary: Palettes.primary),
+    colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.lightBlue)
+        .copyWith(secondary: Palettes.primary),
   );
 
   static final ThemeData dark = ThemeData(
@@ -47,12 +60,16 @@ class CustomTheme {
         ),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.montserrat(fontSize: 34, color: Palettes.white),
-      displayMedium: GoogleFonts.montserrat(fontSize: 32, color: Palettes.white),
+      displayMedium:
+          GoogleFonts.montserrat(fontSize: 32, color: Palettes.white),
       displaySmall: GoogleFonts.montserrat(fontSize: 30, color: Palettes.white),
       //
-      headlineLarge: GoogleFonts.montserrat(fontSize: 28, color: Palettes.white),
-      headlineMedium: GoogleFonts.montserrat(fontSize: 26, color: Palettes.white),
-      headlineSmall: GoogleFonts.montserrat(fontSize: 24, color: Palettes.white),
+      headlineLarge:
+          GoogleFonts.montserrat(fontSize: 28, color: Palettes.white),
+      headlineMedium:
+          GoogleFonts.montserrat(fontSize: 26, color: Palettes.white),
+      headlineSmall:
+          GoogleFonts.montserrat(fontSize: 24, color: Palettes.white),
       //
       titleLarge: GoogleFonts.montserrat(fontSize: 22, color: Palettes.white),
       titleMedium: GoogleFonts.montserrat(fontSize: 20, color: Palettes.white),
@@ -62,6 +79,7 @@ class CustomTheme {
       bodyMedium: GoogleFonts.montserrat(fontSize: 14, color: Palettes.white),
       bodySmall: GoogleFonts.montserrat(fontSize: 12, color: Palettes.white),
     ),
-    colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.lightBlue).copyWith(secondary: Palettes.primary),
+    colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.lightBlue)
+        .copyWith(secondary: Palettes.primary),
   );
 }

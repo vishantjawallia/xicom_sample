@@ -6,7 +6,8 @@ import '../views/splash/splash_view.dart';
 
 class Routes {
   static final List<GetPage<dynamic>> getRoutes = [
-    GetPage(name: DashboardScreenView.routeName, page: () => DashboardScreenView()),
+    GetPage(
+        name: DashboardScreenView.routeName, page: () => DashboardScreenView()),
     GetPage(name: SplashView.routeName, page: () => const SplashView()),
   ];
   static Map<String, Widget Function(BuildContext)> routes = {

@@ -12,7 +12,8 @@ class _SplashMobile extends StatelessWidget {
       body: Center(
         child: Text(
           'Quotes App',
-          style: Get.textTheme.displayLarge!.copyWith(fontWeight: FontWeight.w800, fontSize: 40),
+          style: Get.textTheme.displayLarge!
+              .copyWith(fontWeight: FontWeight.w800, fontSize: 40),
         ),
       ),
     );
