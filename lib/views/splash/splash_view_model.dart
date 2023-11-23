@@ -18,6 +18,6 @@ class SplashViewModel extends BaseViewModel {
     setBusy(false);
     notifyListeners();
     await Future.delayed(const Duration(seconds: 2));
-    Get.off(() => ImgDetailScreenView());
+    Get.off(() => DashboardScreenView ());
   }
 }

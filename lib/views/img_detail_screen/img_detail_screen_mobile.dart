@@ -56,21 +56,14 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                           ),
                         ),
                       )
-                    else if (true == 0)
-                      SizedBox()
                     else
-                      CachedNetworkImage(
-                        height: 280,
-                        imageUrl:
-                            "http://dev3.xicom.us//xttest//shoes//f8f7420264d9b62582d31da00a6289ea.jpg",
-                        placeholder: (context, url) => const Center(
-                          child: CircularProgressIndicator(
-                              color: Palettes.primary),
-                        ),
-                        errorWidget: (context, url, error) =>
+                      Image.asset(
+                        errorBuilder: (context, url, error) =>
                             const Icon(Icons.error),
                         filterQuality: FilterQuality.low,
                         fit: BoxFit.fill,
+                        height: 280,
+                        widget.viewModel.file!.path,
                       ),
                     SizedBox(height: 20),
                     CustomTextField(
@@ -81,8 +74,7 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter First Name';
                         }
-
-                        return null!;
+                        return null;
                       },
                     ),
                     CustomTextField(
@@ -93,7 +85,8 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter Last Name';
                         }
-                        return null!;
+
+                        return null;
                       },
                     ),
                     CustomTextField(
@@ -105,18 +98,20 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                           return 'Please enter Email';
                         }
 
-                        return null!;
+                        return null;
                       },
                     ),
                     CustomTextField(
                       controller: widget.viewModel.phoneController,
+                      keyboardType: TextInputType.phone,
                       // focusNode: widget.viewModel.phoneFocusedNode,
                       name: "Phone",
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter Phone';
                         }
-                        return null!;
+
+                        return null;
                       },
                     ),
                     Padding(
@@ -135,12 +130,20 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                             if (_formKey.currentState!.validate()) {
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Processing Data')),
-                              );
+                              widget.viewModel.addData(
+                                  context,
+                                  widget.viewModel.firstName,
+                                  widget.viewModel.lastName,
+                                  widget.viewModel.email,
+                                  widget.viewModel.file,
+                                  widget.viewModel.phone);
                             } else {
-                              widget.viewModel.addData();
+                              // widget.viewModel.addData(
+                              //     widget.viewModel.firstName,
+                              //     widget.viewModel.lastName,
+                              //     widget.viewModel.email,
+                              //     widget.viewModel.file,
+                              //     widget.viewModel.phone);
                             }
                           },
                         ),

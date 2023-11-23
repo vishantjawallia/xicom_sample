@@ -3,18 +3,21 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 mixin ImgDetailService {
   /* -------------------------------- @apiFileUpload  ------------------------------- */
-  void apiUploadFile(
+  Future<bool> apiUploadFile(
     String? url,
-    int? firstName,
-    int? lastName,
-    int? email,
-    int? phone,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phone,
     File? file,
   ) async {
+    bool result = false;
     try {
       var stream = http.ByteStream(file!.openRead());
       Map<String, String> headers = {
@@ -49,14 +52,56 @@ mixin ImgDetailService {
         log(response.statusCode.toString());
         log(value);
       });
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response.statusCode == 200) {
         // setBusy(false);
         // loadItems(reload: true);
-        log(response.stream.first.toString());
+        // log(response.stream.first.toString());
+        result = true;
       }
-    } on SocketException {
+      return result;
+    } catch (e) {
       // log('$e');
-      throw "no-internet";
+      return result;
     }
+  }
+
+  Future<File?> saveImage(String url) async {
+    String? message;
+    // final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+    try {
+      // Download image
+      final http.Response response = await http.get(Uri.parse(url));
+
+      // Get temporary directory
+      final dir = await getTemporaryDirectory();
+
+      // Create an image name
+      var filename = '${dir.path}/${DateTime.now().millisecond}.png';
+
+      // Save to filesystem
+      final file = File(filename);
+      await file.writeAsBytes(response.bodyBytes);
+
+      return file;
+    } catch (e) {
+      return null;
+    }
+    //   await file.writeAsBytes(response.bodyBytes);
+
+    //   // Ask the user to save it
+    //   final params = SaveFileDialogParams(sourceFilePath: file.path);
+    //   final finalPath = await FlutterFileDialog.saveFile(params: params);
+
+    //   if (finalPath != null) {
+    //     message = 'Image saved to disk';
+    //   }
+    // } catch (e) {
+    //   message = 'An error occurred while saving the image';
+    // }
+
+    // if (message != null) {
+    //   scaffoldMessenger.showSnackBar(SnackBar(content: Text(message)));
+    // }
   }
 }

@@ -7,8 +7,9 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:xicom_sample/theme/palettes.dart';
 import 'package:xicom_sample/widgets/custom_button.dart';
-import 'package:xicom_sample/widgets/custom_text_field%20copy.dart';
 import 'package:xicom_sample/widgets/custom_text_field.dart';
+import 'package:xicom_sample/widgets/custom_text_field.dart';
+import '../../../models/images_models.dart';
 import 'img_detail_screen_view_model.dart';
 
 part 'img_detail_screen_mobile.dart';
@@ -18,11 +19,14 @@ part 'img_detail_screen_desktop.dart';
 // ignore: must_be_immutable
 class ImgDetailScreenView extends StatelessWidget {
   static const routeName = '/img_detail_screen';
+  final Images? imageObj;
+
+  ImgDetailScreenView({super.key, this.imageObj});
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ImgDetailScreenViewModel>.reactive(
-        viewModelBuilder: () => ImgDetailScreenViewModel(),
+        viewModelBuilder: () => ImgDetailScreenViewModel(imageObj),
         onViewModelReady: (viewModel) {
           // Do something once your viewModel is initialized
         },

@@ -17,6 +17,7 @@ mixin DashboradService {
     String? type,
     String? page,
   ) async {
+    List<Images>? img = [];
     var uri = Uri.parse(Url.getData);
 
     var request = http.MultipartRequest('POST', uri)
@@ -31,12 +32,18 @@ mixin DashboradService {
     var response = await request.send();
 
     if (response.statusCode == 200) {
-      response.stream.transform(utf8.decoder).listen((value) {
+      response.stream.transform(utf8.decoder).listen((value) async {
         log("====>${jsonEncode(value)}");
-        Map<String, dynamic> body = jsonDecode(value.toString());
-        ImagesModel img = ImagesModel.fromJson(body);
-        log(img.toString());
+        Map<String, dynamic> body = await jsonDecode(value.toString());
+        ImagesModel img2 = ImagesModel.fromJson(body);
+        for (var i = 0; i < img2.images!.length; i++) {
+          img.add(img2.images![i]);
+        }
       });
+      // log((img).length.toString());
+      // return img;
     }
+    log((img).length.toString());
+    return img;
   }
 }

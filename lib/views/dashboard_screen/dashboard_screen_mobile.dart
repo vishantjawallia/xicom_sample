@@ -21,25 +21,45 @@ class _DashboardScreenMobile extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   padding: EdgeInsets.only(top: 8),
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(top: 16),
-                      height: 260,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: CachedNetworkImage(
-                          imageUrl: viewModel.imgListing![index].xtImage ??
-                              "http://dev3.xicom.us//xttest//shoes//f8f7420264d9b62582d31da00a6289ea.jpg",
-                          placeholder: (context, url) => const Center(
-                            child: CircularProgressIndicator(
-                                color: Palettes.primary),
-                          ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                          filterQuality: FilterQuality.low,
-                          fit: BoxFit.fill,
+                    if (viewModel.imgListing!.last.id ==
+                        viewModel.imgListing![index].id) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 80, top: 40),
+                        child: CustomButton(
+                          height: 26,
+                          backgroundColor: Palettes.red,
+                          borderColor: Palettes.red,
+                          borderRadius: BorderRadius.circular(8),
+                          textColor: Palettes.white,
+                          text: "Click Here to Load Images",
+                          onTap: viewModel.loadMoreImage,
                         ),
-                      ),
-                    );
+                      );
+                    } else {
+                      return InkWell(
+                        onTap: () => viewModel
+                            .singleImageTap(viewModel.imgListing![index]),
+                        child: Container(
+                          margin: EdgeInsets.only(top: 16),
+                          height: 260,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: CachedNetworkImage(
+                              imageUrl: viewModel.imgListing![index].xtImage ??
+                                  "http://dev3.xicom.us//xttest//shoes//f8f7420264d9b62582d31da00a6289ea.jpg",
+                              placeholder: (context, url) => const Center(
+                                child: CircularProgressIndicator(
+                                    color: Palettes.primary),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                              filterQuality: FilterQuality.low,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
                   },
                 )
               : SizedBox(
