@@ -2,33 +2,58 @@
 
 part of dashboard_screen_view;
 
-class _DashboardScreenMobile extends StatefulWidget {
+class _DashboardScreenMobile extends StatelessWidget {
   final DashboardScreenViewModel viewModel;
 
   const _DashboardScreenMobile(this.viewModel);
 
   @override
-  State<_DashboardScreenMobile> createState() => _DashboardScreenMobileState();
-}
-
-class _DashboardScreenMobileState extends State<_DashboardScreenMobile> {
-
-  @override
-  void initState() {
-    super.initState();
-    
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context, widget.viewModel),
+      appBar: appBar(context, viewModel),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Column(
-          children: [],
-        ),
-      ),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: viewModel.imgListing != null
+              ? ListView.builder(
+                  itemCount: viewModel.imgListing!.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.only(top: 8),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(top: 16),
+                      height: 260,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: CachedNetworkImage(
+                          imageUrl: viewModel.imgListing![index].xtImage ??
+                              "http://dev3.xicom.us//xttest//shoes//f8f7420264d9b62582d31da00a6289ea.jpg",
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(
+                                color: Palettes.primary),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                          filterQuality: FilterQuality.low,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    );
+                  },
+                )
+              : SizedBox(
+                  child: Center(
+                    child: Text(
+                      'No Data Found',
+                      style: Get.textTheme.titleLarge!.copyWith(
+                        color: Colors.grey.shade800,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                )),
     );
   }
 }

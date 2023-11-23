@@ -17,9 +17,11 @@ class DashboardScreenViewModel extends BaseViewModel with DashboradService {
   Future<void> loadItems() async {
     setBusy(true);
     if (imgListing == null) {
-      var response = await getData(108, "popular", 0);
+      var response = await getData("108", "popular", "0");
+      log(response.toString());
       if (response != null) {
-        imgListing = response.images!.toList();
+        // imgListing = response.images!.toList();
+        log(response.toString());
       }
     }
     setBusy(false);

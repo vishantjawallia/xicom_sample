@@ -7,9 +7,9 @@ environment:
 dependencies:
     flutter:
         sdk: flutter
-  equatable: any
-  json_annotation: any
-  freezed_annotation: any
+#   equatable: any
+#   json_annotation: any
+#   freezed_annotation: any
     cupertino_icons: ^1.0.5
     equatable: ^2.0.5
     fvm: ^2.4.1
@@ -21,14 +21,16 @@ dependencies:
     provider: ^6.0.5
     responsive_builder: ^0.7.0
     stacked: ^3.4.1
+    cached_network_image: ^3.3.0
+    image_picker: ^1.0.4
 
 
 dev_dependencies:
     flutter_test:
         sdk: flutter
-  json_serializable: any
-  build_runner: any
-  freezed: any
+#   json_serializable: any
+#   build_runner: any
+#   freezed: any
     flutter_lints: ^2.0.0
 
 

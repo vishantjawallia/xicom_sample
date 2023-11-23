@@ -11,7 +11,7 @@ class _SplashMobile extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Text(
-          'Quotes App',
+          'Xicom App',
           style: Get.textTheme.displayLarge!
               .copyWith(fontWeight: FontWeight.w800, fontSize: 40),
         ),

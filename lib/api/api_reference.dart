@@ -18,16 +18,26 @@ class ApiReference {
       final response = await http.post(
         Uri.parse(url!),
         headers: {
-          'Content-Type': "application/json",
+          'Content-Type': 'multipart/form-data',
+          // 'Content-Type': "application/json",
         },
         body: jsonEncode(body!),
       );
+      log(body.toString());
       if (response.statusCode == 200) {
+        log("messe");
         return jsonDecode(response.body);
       } else {
-        throw "Exception-Occurred";
+        log(response.statusCode.toString());
+        log(response.statusCode.toString());
+        log(response.request.toString());
+        log(response.body.toString());
+        log(response.isRedirect.toString());
+        log(response.isRedirect.toString());
+        throw Exception("Exception-Occurred");
       }
     } on SocketException {
+      log("msage");
       throw "no-internet";
     }
   }
@@ -43,7 +53,7 @@ class ApiReference {
       if (response.statusCode == 200) {
         return jsonDecode(response.body.toString());
       } else {
-        throw "Exception-Occurred";
+        Exception("Exception-Occurred");
       }
     } on SocketException {
       throw "no-internet";

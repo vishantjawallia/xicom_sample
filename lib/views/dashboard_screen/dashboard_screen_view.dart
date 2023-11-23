@@ -2,9 +2,13 @@
 
 library dashboard_screen_view;
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:get/get.dart';
+
 import 'package:stacked/stacked.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:xicom_sample/theme/palettes.dart';
 import 'components/app_bar.dart';
 import 'dashboard_screen_view_model.dart';
 
