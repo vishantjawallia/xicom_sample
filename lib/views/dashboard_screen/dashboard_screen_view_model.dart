@@ -10,7 +10,7 @@ import '../../config/config.dart';
 import 'service/dashboard_service.dart';
 
 class DashboardScreenViewModel extends BaseViewModel with DashboradService {
-  int page = 0;
+  int page = 1;
   List<Images>? imgListing;
 
   DashboardScreenViewModel() {
@@ -35,14 +35,15 @@ class DashboardScreenViewModel extends BaseViewModel with DashboradService {
   void loadMoreImage() async {
     setBusy(true);
     page = page + 1;
-    log(page.toString());
     notifyListeners();
-    final images = await getData("108", "popular", "$page") ?? [];
+    // log(imgListing!.length.toString());
+    final images = await getData("108", "popular", "$page")??[];
+    log("=====><" + images!.toString());
+    log("=====>>???" + imgListing!.toString());
+    // log(imgListing!.toString());
     List<Images> jj = [...?imgListing, ...images];
     log(jj.length.toString());
-    imgListing?.clear();
-    notifyListeners();
-    imgListing!.addAll(jj);
+    imgListing = jj;
     setBusy(false);
     notifyListeners();
   }

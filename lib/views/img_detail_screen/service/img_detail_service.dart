@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -65,7 +66,7 @@ mixin ImgDetailService {
     }
   }
 
-  Future<File?> saveImage(String url) async {
+  Future<Uint8List?> saveImage(String url) async {
     String? message;
     // final scaffoldMessenger = ScaffoldMessenger.of(context);
 
@@ -74,16 +75,16 @@ mixin ImgDetailService {
       final http.Response response = await http.get(Uri.parse(url));
 
       // Get temporary directory
-      final dir = await getTemporaryDirectory();
+      // final dir = await getTemporaryDirectory();
 
       // Create an image name
-      var filename = '${dir.path}/${DateTime.now().millisecond}.png';
+      // var filename = '${dir.path}/${DateTime.now().millisecond}.png';
 
       // Save to filesystem
-      final file = File(filename);
-      await file.writeAsBytes(response.bodyBytes);
+      // final file = File(filename);
+      // await file.writeAsBytes(response.bodyBytes);
 
-      return file;
+      return response.bodyBytes;
     } catch (e) {
       return null;
     }

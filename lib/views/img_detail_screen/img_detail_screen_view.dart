@@ -1,10 +1,14 @@
 library img_detail_screen_view;
 
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:xicom_sample/helpers/%20extension.dart';
 import 'package:xicom_sample/theme/palettes.dart';
 import 'package:xicom_sample/widgets/custom_button.dart';
 import 'package:xicom_sample/widgets/custom_text_field.dart';

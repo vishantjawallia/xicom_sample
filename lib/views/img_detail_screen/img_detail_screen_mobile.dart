@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, null_check_always_fails
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, null_check_always_fails, use_build_context_synchronously
 
 part of img_detail_screen_view;
 
@@ -57,18 +57,17 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                         ),
                       )
                     else
-                      Image.asset(
+                      Image.memory(
+                        widget.viewModel.file!,
                         errorBuilder: (context, url, error) =>
                             const Icon(Icons.error),
                         filterQuality: FilterQuality.low,
                         fit: BoxFit.fill,
                         height: 280,
-                        widget.viewModel.file!.path,
                       ),
                     SizedBox(height: 20),
                     CustomTextField(
                       controller: widget.viewModel.fnameController,
-                      // focusNode: widget.viewModel.fnameFocusedNode,
                       name: "First Name",
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -79,7 +78,6 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                     ),
                     CustomTextField(
                       controller: widget.viewModel.lnameController,
-                      // focusNode: widget.viewModel.lnameFocusedNode,
                       name: "Last Name",
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -91,20 +89,13 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                     ),
                     CustomTextField(
                       controller: widget.viewModel.emailController,
-                      // focusNode: widget.viewModel.emailFocusedNode,
                       name: "Email",
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter Email';
-                        }
-
-                        return null;
-                      },
+                      validator: (value) =>
+                          value!.isValidEmail() ? null : "Please enter Email",
                     ),
                     CustomTextField(
                       controller: widget.viewModel.phoneController,
                       keyboardType: TextInputType.phone,
-                      // focusNode: widget.viewModel.phoneFocusedNode,
                       name: "Phone",
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -126,16 +117,28 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                           borderRadius: BorderRadius.circular(8),
                           textColor: Palettes.white,
                           text: "Submit",
-                          onTap: () {
+                          onTap: () async {
                             if (_formKey.currentState!.validate()) {
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
+                              // Get temporary directory
+                              final dir = await getTemporaryDirectory();
+
+                              // Create an image name
+                              var filename =
+                                  '${dir.path}/${DateTime.now().millisecond}.png';
+
+                              // Save to filesystem
+                              // final file = File(filename);
+                              // await file.writeAsBytes(response.bodyBytes);
+                              File ff = File(filename);
+                              await ff.writeAsBytes(widget.viewModel.file!);
                               widget.viewModel.addData(
                                   context,
                                   widget.viewModel.firstName,
                                   widget.viewModel.lastName,
                                   widget.viewModel.email,
-                                  widget.viewModel.file,
+                                  ff,
                                   widget.viewModel.phone);
                             } else {
                               // widget.viewModel.addData(

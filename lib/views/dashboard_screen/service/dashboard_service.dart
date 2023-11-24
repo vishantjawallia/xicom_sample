@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, body_might_complete_normally_nullable
+// ignore_for_file: unused_local_variable, body_might_complete_normally_nullable, avoid_function_literals_in_foreach_calls, unused_import
 import 'dart:convert';
 import 'dart:io';
 // import 'dart:math';
@@ -25,23 +25,16 @@ mixin DashboradService {
       ..fields['type'] = "$type"
       ..fields['offset'] = "$page";
 
-    request.headers.addAll({
-      'Content-Type': 'multipart/form-data',
-    });
-
+    request.headers.addAll({'Content-Type': 'multipart/form-data'});
     var response = await request.send();
 
     if (response.statusCode == 200) {
-      response.stream.transform(utf8.decoder).listen((value) async {
-        log("====>${jsonEncode(value)}");
-        Map<String, dynamic> body = await jsonDecode(value.toString());
-        ImagesModel img2 = ImagesModel.fromJson(body);
-        for (var i = 0; i < img2.images!.length; i++) {
-          img.add(img2.images![i]);
-        }
-      });
-      // log((img).length.toString());
-      // return img;
+      log(request.fields.toString());
+      final data = await response.stream.bytesToString();
+      ImagesModel img2 = ImagesModel.fromJson(jsonDecode(data));
+      img.addAll(img2.images!.toList());
+      log((img).length.toString());
+      return img;
     }
     log((img).length.toString());
     return img;

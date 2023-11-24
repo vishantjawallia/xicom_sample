@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ class ImgDetailScreenViewModel extends BaseViewModel with ImgDetailService {
   String? email;
   final Images? imageObj;
   String? phone;
-  File? file;
+  Uint8List? file;
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -43,10 +44,9 @@ class ImgDetailScreenViewModel extends BaseViewModel with ImgDetailService {
   Future<void> loadItems() async {
     setBusy(true);
     //Write your models loading codes here
-    // if (imageObj != null) {
     log(imageObj!.xtImage!.toString());
-    file = await saveImage(imageObj!.xtImage!.toString());
-    // }
+    file = await saveImage(imageObj!.xtImage!);
+    // log(file!);
     //Let other views to render again
     setBusy(false);
     notifyListeners();
@@ -77,7 +77,7 @@ class ImgDetailScreenViewModel extends BaseViewModel with ImgDetailService {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      file = File(pickedFile.path);
+      // file = File(pickedFile.path);
       notifyListeners();
     }
   }
