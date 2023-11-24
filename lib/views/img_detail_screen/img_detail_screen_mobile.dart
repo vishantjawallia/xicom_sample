@@ -134,12 +134,13 @@ class _ImgDetailScreenMobileState extends State<_ImgDetailScreenMobile> {
                               File ff = File(filename);
                               await ff.writeAsBytes(widget.viewModel.file!);
                               widget.viewModel.addData(
-                                  context,
-                                  widget.viewModel.firstName,
-                                  widget.viewModel.lastName,
-                                  widget.viewModel.email,
-                                  ff,
-                                  widget.viewModel.phone);
+                                context,
+                                // widget.viewModel.firstName,
+                                // widget.viewModel.lastName,
+                                // widget.viewModel.email,
+                                ff,
+                              );
+                              // widget.viewModel.phone);
                             } else {
                               // widget.viewModel.addData(
                               //     widget.viewModel.firstName,

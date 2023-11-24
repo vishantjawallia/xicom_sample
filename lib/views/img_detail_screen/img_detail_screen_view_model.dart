@@ -14,11 +14,11 @@ import '../../../models/images_models.dart';
 import 'package:xicom_sample/views/img_detail_screen/service/img_detail_service.dart';
 
 class ImgDetailScreenViewModel extends BaseViewModel with ImgDetailService {
-  String? firstName;
-  String? lastName;
-  String? email;
+  // String? firstName;
+  // String? lastName;
+  // String? email;
   final Images? imageObj;
-  String? phone;
+  // String? phone;
   Uint8List? file;
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
@@ -54,15 +54,17 @@ class ImgDetailScreenViewModel extends BaseViewModel with ImgDetailService {
 
   void loadMoreHandler() {}
 
-  addData(BuildContext context, String? firstName, String? lastName,
-      String? email, File? file, String? phone) async {
+  addData(
+    BuildContext context,
+    File? file,
+  ) async {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
           content: Text('Processing Data'),
           duration: Duration(milliseconds: 200)),
     );
-    bool res = await apiUploadFile(
-        Url.saveData, firstName, lastName, email, phone, file);
+    bool res = await apiUploadFile(Url.saveData, fnameController.text,
+        lnameController.text, emailController.text, phoneController.text, file);
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
           content: Text('User has been saved successfully'),

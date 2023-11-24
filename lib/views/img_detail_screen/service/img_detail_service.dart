@@ -40,6 +40,7 @@ mixin ImgDetailService {
       request.fields['phone'] = jsonEncode(phone);
       log(jsonEncode(request.fields));
       var response = await request.send();
+      // log(response..toString());
       log(response.statusCode.toString());
       log(response.statusCode.toString());
       log(response.contentLength.toString());
